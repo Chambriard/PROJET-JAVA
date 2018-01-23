@@ -19,5 +19,13 @@ public class Competence {
         this.nomAng = nomAng;
         this.nomFra = nomFra;
     }
+    public Competence (String id){
+        this.id = id;
+        this.nomAng = "";
+        this.nomFra = "";
+    }
+    public String toStringId(){
+        return id ;
+    }
     
 }
