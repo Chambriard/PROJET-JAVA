@@ -19,10 +19,14 @@ public class NotreProjetJava {
     public static void main(String[] args) throws FileNotFoundException {
         System.out.println(" *** DEBUT *** ");
         
-        //CSVFile personnel = new CSVFile(System.getProperty("user.dir") + "\\data\\liste_personnel.csv");
-        //CSVFile personnel = new CSVFile(System.getProperty("user.dir") + "\\data\\liste_competences.csv");
-        CSVFile personnel = new CSVFile(System.getProperty("user.dir") + "\\data\\competences_personnel.csv");
-        personnel.afficher();
+        //CSVFile personnel = new CSVFile("liste_personnel.csv");
+        //CSVFile personnel = new CSVFile("liste_competences.csv");
+        //CSVFile personnel = new CSVFile("competences_personnel.csv");
+        //System.out.println(personnel.toString());
+        
+        Competence c = new Competence("F.1", "Anglais", "French");
+        System.out.println(c.toString());
+        System.out.println(c.returnFormat());
     }
     
 }

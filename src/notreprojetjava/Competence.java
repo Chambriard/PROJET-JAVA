@@ -28,4 +28,12 @@ public class Competence {
         return id ;
     }
     
+    public String toString(){
+        return id + "\nNom Anglais : " + nomAng + "\nNom Français : " + nomFra;
+    }
+    
+    public String returnFormat(){
+        return id + ";" + nomAng + ";" + nomFra + ";";
+    }
+    
 }

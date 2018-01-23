@@ -35,6 +35,10 @@ public class Mission {
         equipeMission = new ArrayList<Employe>();
     }
     
+    public String toString(){
+        return "";
+    }
+    
     // public void ajoutComp(...){}
     
     // public void ajoutEmp(...){}

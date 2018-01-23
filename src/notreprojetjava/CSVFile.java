@@ -17,6 +17,7 @@ import java.util.Scanner;
  */
 public class CSVFile {
     
+    private String nom;
     private String path;
     private Scanner sc;
     HashMap<String,ArrayList<Competence>> ensembleEmpComp;
@@ -24,8 +25,9 @@ public class CSVFile {
         return sc;
     }
     
-    public CSVFile(String path) throws FileNotFoundException{
-        this.path = path;
+    public CSVFile(String nom) throws FileNotFoundException{
+        this.nom = nom;
+        this.path = System.getProperty("user.dir") + "\\data\\" + nom;
         this.sc = new Scanner(new FileReader(path));
         
         ensembleEmpComp = new HashMap<String,ArrayList<Competence>>();
@@ -58,6 +60,39 @@ public class CSVFile {
                  System.out.println("id comp : " + comp.toStringId());
             }
         }
+        
+        // Test sur les noms
+        /*switch(this.nom){
+            case "competences_personnel.csv" : System.out.println("C'est la liste des compétences de chaque personne.");
+            break;
+            
+            case "liste_personnel.csv" : System.out.println("C'est la liste du personnel.");
+            break;
+            
+            case "liste_competences.csv" : System.out.println("C'est la liste des compétences.");
+            break;
+        }*/
     }
     
+    public String toString(){
+        String contenu = "";
+        switch(this.nom){
+            case "competences_personnel.csv" : contenu += " *** LISTE DES COMPETENCES PAR PERSONNE *** \r\n";
+            break;
+            
+            case "liste_personnel.csv" : contenu += " *** LISTE DU PERSONNEL *** \r\n";
+            break;
+            
+            case "liste_competences.csv" : contenu += " *** LISTE DES COMPETENCES *** \r\n";
+            break;
+        }
+        
+        while(sc.hasNextLine()) {
+            contenu += sc.nextLine() + "\r\n";
+        }
+        
+        return contenu;
+    }
+    
+    //public void
 }
