@@ -13,9 +13,9 @@ import java.util.Date;
  * @author Chambriard
  */
 public class Personnel {
-    private int id ;
-    private String nom ;
-    private String prenom ;
+    private int id;
+    private String nom;
+    private String prenom;
     private Date dateE;
     private ArrayList<Competence> lesCompetences; 
     
