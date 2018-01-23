@@ -12,14 +12,14 @@ import java.util.Date;
  *
  * @author Chambriard
  */
-public class Personnel {
+public class Employe {
     private int id;
     private String nom;
     private String prenom;
     private Date dateE;
     private ArrayList<Competence> lesCompetences; 
     
-    public Personnel (int id , String nom, String prenom, Date dateE){
+    public Employe (int id , String nom, String prenom, Date dateE){
         this.id = id ;
         this.nom = nom;
         this.prenom = prenom ;

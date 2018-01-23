@@ -5,6 +5,8 @@
  */
 package notreprojetjava;
 
+import java.io.FileNotFoundException;
+
 /**
  *
  * @author Chambriard
@@ -14,8 +16,13 @@ public class NotreProjetJava {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) throws FileNotFoundException {
+        System.out.println(" *** DEBUT *** ");
+        
+        //CSVFile personnel = new CSVFile(System.getProperty("user.dir") + "\\data\\liste_personnel.csv");
+        //CSVFile personnel = new CSVFile(System.getProperty("user.dir") + "\\data\\liste_competences.csv");
+        CSVFile personnel = new CSVFile(System.getProperty("user.dir") + "\\data\\competences_personnel.csv");
+        personnel.afficher();
     }
     
 }
