@@ -15,36 +15,23 @@ import java.util.Scanner;
  *
  * @author Utilisateur
  */
-public class CSVFile {
+public abstract class CSVFile {
     
-    private String nom;
-    private String path;
-    private Scanner sc;
+    // Attributs
+    protected String nom;
+    protected String path;
+    protected Scanner sc;
     HashMap<String,ArrayList<Competence>> ensembleEmpComp;
+    
+    // Accesseurs
     public Scanner getSc(){
         return sc;
     }
     
-    public CSVFile(String nom) throws FileNotFoundException{
-        this.nom = nom;
-        this.path = System.getProperty("user.dir") + "\\data\\" + nom;
+    
+    public CSVFile() throws FileNotFoundException{
         this.sc = new Scanner(new FileReader(path));
-        //création d'une hashmap
-        ensembleEmpComp = new HashMap<String,ArrayList<Competence>>();
-        while(sc.hasNextLine()) {
-            String[] chaineDecoupe = null;
-            String idEmp ;
-            ArrayList<Competence> lesCompChaine = new ArrayList<Competence>();
-            chaineDecoupe = sc.nextLine().split(";");
-            idEmp = chaineDecoupe[0];
-            int i =1; 
-            while(i< chaineDecoupe.length){
-                Competence maComp = new Competence(chaineDecoupe[i]);
-                lesCompChaine.add(maComp);
-                i++ ;
-            }
-            ensembleEmpComp.put(idEmp,lesCompChaine);
-        }
+        
     }
 
     public void afficher(){

@@ -14,18 +14,20 @@ import java.util.Date;
  * @author Chambriard
  */
 public class Employe {
+    
     private String id;
     private String nom;
     private String prenom;
     private Date dateE;
     private ArrayList<Competence> lesCompetences; 
-    private CSVFile monCSV ;
+    //private CSVFile monCSV;
+    
     public Employe (String id , String nom, String prenom, Date dateE) throws FileNotFoundException{
         this.id = id ;
         this.nom = nom;
         this.prenom = prenom ;
         this.dateE = dateE ;
-        monCSV = new CSVFile(System.getProperty("user.dir") + "\\data\\competences_personnel.csv");
+        //monCSV = new CSVFile(System.getProperty("user.dir") + "\\data\\competences_personnel.csv");
         lesCompetences = new ArrayList<Competence>() ;
         /*
         boolean presenceEmp = false ;
