@@ -29,7 +29,7 @@ public class CSVFile {
         this.nom = nom;
         this.path = System.getProperty("user.dir") + "\\data\\" + nom;
         this.sc = new Scanner(new FileReader(path));
-        
+        //création d'une hashmap
         ensembleEmpComp = new HashMap<String,ArrayList<Competence>>();
         while(sc.hasNextLine()) {
             String[] chaineDecoupe = null;
