@@ -30,7 +30,9 @@ public class NotreProjetJava {
         CSVFileListeCompetences maListComp = new CSVFileListeCompetences();
         maListComp.afficher();
         
-        
+        CSVFileListePersonnel listePersonnel = new CSVFileListePersonnel();
+        listePersonnel.recupEmployes();
+        listePersonnel.afficher();
     }
     
 }

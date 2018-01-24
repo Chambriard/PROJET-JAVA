@@ -26,8 +26,7 @@ public abstract class CSVFile {
     
     
     public CSVFile() throws FileNotFoundException{
-        
-        
+
     }
 
     public void afficher(){
