@@ -6,15 +6,36 @@
 package notreprojetjava;
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  *
  * @author Utilisateur
  */
 public class CSVFileListeCompetences extends CSVFile {
-    
-    public CSVFileListeCompetences(String nom) throws FileNotFoundException {
-        
+    private ArrayList<Competence> ensembleComp ; 
+    public CSVFileListeCompetences() throws FileNotFoundException {
+        nom = "liste_competences.csv";
+        path = System.getProperty("user.dir") + "\\data\\" + nom;
+        this.sc = new Scanner(new FileReader(path));
+        //création d'une hashmap
+        ensembleComp = new ArrayList<Competence>();   
+    }
+    public void recupCompetence(){
+        while(sc.hasNextLine()) {
+            String[] chaineDecoupe = null;
+            chaineDecoupe = sc.nextLine().split(";");
+            Competence maComp = new Competence(chaineDecoupe[0],chaineDecoupe[1],chaineDecoupe[2]);
+            ensembleComp.add(maComp);
+        }  
+    }
+    public void afficher(){
+        for(Competence comp : ensembleComp){
+            System.out.println(comp.toString());
+        }
     }
     
 }

@@ -27,24 +27,7 @@ public class Employe {
         this.nom = nom;
         this.prenom = prenom ;
         this.dateE = dateE ;
-        //monCSV = new CSVFile(System.getProperty("user.dir") + "\\data\\competences_personnel.csv");
         lesCompetences = new ArrayList<Competence>() ;
-        /*
-        boolean presenceEmp = false ;
-        while(monCSV.getSc().hasNextLine() && presenceEmp == false) {
-            String[] chaineDecoupe = null;
-            String idEmp ;
-            chaineDecoupe = monCSV.getSc().nextLine().split(";");
-            idEmp = chaineDecoupe[0];
-            if(Integer.parseInt(idEmp) == id){
-                int i =0 ;
-                while(i < chaineDecoupe.length){
-               
-                }
-            }
-            
-        }
-        */
     }
     public void ajouterComp(Competence uneComp){
         

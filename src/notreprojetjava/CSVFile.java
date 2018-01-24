@@ -23,14 +23,10 @@ public abstract class CSVFile {
     protected Scanner sc;
     HashMap<String,ArrayList<Competence>> ensembleEmpComp;
     
-    // Accesseurs
-    public Scanner getSc(){
-        return sc;
-    }
     
     
     public CSVFile() throws FileNotFoundException{
-        this.sc = new Scanner(new FileReader(path));
+        
         
     }
 

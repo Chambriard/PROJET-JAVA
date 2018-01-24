@@ -17,6 +17,7 @@ public class CSVFileListePersonnel extends CSVFile {
         super();
         nom = "liste_competences.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
+        
     }
     
 }

@@ -27,7 +27,8 @@ public class NotreProjetJava {
         Competence c = new Competence("F.1", "Anglais", "French");
         System.out.println(c.toString());
         System.out.println(c.returnFormat());
-        
+        CSVFileListeCompetences maListComp = new CSVFileListeCompetences();
+        maListComp.afficher();
         
         
     }
