@@ -29,8 +29,21 @@ public class Employe {
         this.dateE = dateE ;
         lesCompetences = new ArrayList<Competence>() ;
     }
+    public Employe (String id){
+        this.id = id ;
+        this.nom = "";
+        this.prenom = "" ;
+        this.dateE = null ;
+        lesCompetences = new ArrayList<Competence>() ;
+    }
     public void ajouterComp(Competence uneComp){
-        
+        lesCompetences.add(uneComp);
+    }
+    public boolean equals(Object obj){
+        Employe other =(Employe)obj;
+        if(!this.id.equals(other.id))
+            return false;
+        return true;              
     }
    
     

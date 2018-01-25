@@ -35,5 +35,10 @@ public class Competence {
     public String returnFormat(){
         return id + ";" + nomAng + ";" + nomFra + ";";
     }
-    
+    public boolean equals(Object obj){
+        Competence other =(Competence)obj;
+        if(!this.id.equals(other.id))
+            return false;
+        return true;              
+    }
 }

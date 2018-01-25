@@ -6,8 +6,10 @@
 package notreprojetjava;
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  *
@@ -19,23 +21,30 @@ public class CSVFileCompetencesPersonnel extends CSVFile {
         super();
         nom = "competences_personnel.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
-        
-        //création d'une hashmap
-        ensembleEmpComp = new HashMap<String,ArrayList<Competence>>();
+        this.sc = new Scanner(new FileReader(path));
+    }
+    public void recupCompetencesPersonnel(ArrayList<Competence> lesComp, ArrayList<Employe> lesEmp){
         while(sc.hasNextLine()) {
             String[] chaineDecoupe = null;
             String idEmp ;
-            ArrayList<Competence> lesCompChaine = new ArrayList<Competence>();
             chaineDecoupe = sc.nextLine().split(";");
             idEmp = chaineDecoupe[0];
-            int i =1; 
-            while(i< chaineDecoupe.length){
-                Competence maComp = new Competence(chaineDecoupe[i]);
-                lesCompChaine.add(maComp);
-                i++ ;
+            Employe monEmpFichier = new Employe(idEmp) ;
+            for(Employe unEmpList : lesEmp){
+                if (unEmpList.equals(monEmpFichier)){
+                    int i =1; 
+                    while(i< chaineDecoupe.length){
+                        Competence uneComFiche = new Competence(chaineDecoupe[i]);
+                        for(Competence uneCompList : lesComp){
+                            if(uneComFiche.equals(uneCompList)){
+                                unEmpList.ajouterComp(uneCompList);
+                            }
+                        }
+                        i++;
+                    }
+                }
             }
-            ensembleEmpComp.put(idEmp,lesCompChaine);
+            
         }
     }
-    
 }
