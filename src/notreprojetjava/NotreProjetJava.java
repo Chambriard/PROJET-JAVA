@@ -6,6 +6,7 @@
 package notreprojetjava;
 
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 
 /**
  *
@@ -16,7 +17,7 @@ public class NotreProjetJava {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, ParseException {
         System.out.println(" *** DEBUT *** ");
         
         //CSVFile personnel = new CSVFile("liste_personnel.csv");
