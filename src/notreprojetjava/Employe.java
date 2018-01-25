@@ -18,11 +18,12 @@ public class Employe {
     private String id;
     private String nom;
     private String prenom;
-    private Date dateE;
+    //private Date dateE;
+    private String dateE;
     private ArrayList<Competence> lesCompetences; 
     //private CSVFile monCSV;
     
-    public Employe (String id , String nom, String prenom, Date dateE) throws FileNotFoundException{
+    public Employe (String id , String nom, String prenom, String dateE) throws FileNotFoundException{
         this.id = id ;
         this.nom = nom;
         this.prenom = prenom ;
@@ -32,7 +33,9 @@ public class Employe {
     public void ajouterComp(Competence uneComp){
         
     }
-   
     
+    public String toString(){
+        return prenom + " " + nom + " - Date d'entrée en entreprise : " + dateE + ".";
+    }
     
 }

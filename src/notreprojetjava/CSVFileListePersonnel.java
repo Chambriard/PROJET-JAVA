@@ -7,7 +7,10 @@ package notreprojetjava;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -16,25 +19,30 @@ import java.util.Scanner;
  */
 public class CSVFileListePersonnel extends CSVFile {
     
-    private ArrayList<String> lesEmployes;
+    private ArrayList<Employe> lesEmployes;
     
     public CSVFileListePersonnel() throws FileNotFoundException {
         //super();
         nom = "liste_personnel.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
         sc = new Scanner(new FileReader(path));
-        lesEmployes = new ArrayList<String>();
+        lesEmployes = new ArrayList<Employe>();
     }
     
-    public void recupEmployes(){
+    public void recupEmployes() throws FileNotFoundException, ParseException{
+        
         while(sc.hasNextLine()) {
-            lesEmployes.add(sc.nextLine());
+            String[] chaineDecoupe = null;
+            chaineDecoupe = sc.nextLine().split(";");
+            //SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yy");
+            //Date d = sdf.parse(chaineDecoupe[2]);
+            lesEmployes.add(new Employe(chaineDecoupe[3], chaineDecoupe[1], chaineDecoupe[0], chaineDecoupe[2]));
         }
     }
     
     public void afficher(){
-        for(String monEmploye : lesEmployes){
-            System.out.println(monEmploye);
+        for(Employe monEmploye : lesEmployes){
+            System.out.println(monEmploye.toString());
         }
     }
 }
