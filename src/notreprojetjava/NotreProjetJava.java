@@ -28,11 +28,12 @@ public class NotreProjetJava {
         System.out.println(c.toString());
         System.out.println(c.returnFormat());
         CSVFileListeCompetences maListComp = new CSVFileListeCompetences();
+        maListComp.recupCompetence();
         maListComp.afficher();
-        
+        /*
         CSVFileListePersonnel listePersonnel = new CSVFileListePersonnel();
         listePersonnel.recupEmployes();
-        listePersonnel.afficher();
+        listePersonnel.afficher();*/
     }
     
 }
