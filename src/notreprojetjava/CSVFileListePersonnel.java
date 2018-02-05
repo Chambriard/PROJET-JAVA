@@ -29,6 +29,10 @@ public class CSVFileListePersonnel extends CSVFile {
         lesEmployes = new ArrayList<Employe>();
     }
     
+    public ArrayList<Employe> getList(){
+        return lesEmployes ;
+    }
+    
     public void recupEmployes() throws FileNotFoundException, ParseException{
         
         while(sc.hasNextLine()) {

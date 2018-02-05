@@ -25,16 +25,29 @@ public class NotreProjetJava {
         //CSVFile personnel = new CSVFile("competences_personnel.csv");
         //System.out.println(personnel.toString());
         //personnel.afficher();
+        
+        /*
         Competence c = new Competence("F.1", "Anglais", "French");
         System.out.println(c.toString());
         System.out.println(c.returnFormat());
+        */
+    
         CSVFileListeCompetences maListComp = new CSVFileListeCompetences();
         maListComp.recupCompetence();
-        maListComp.afficher();
-        /*
-        CSVFileListePersonnel listePersonnel = new CSVFileListePersonnel();
-        listePersonnel.recupEmployes();
-        listePersonnel.afficher();*/
+   
+        
+        
+        CSVFileListePersonnel maListPerso = new CSVFileListePersonnel();
+        maListPerso.recupEmployes();
+        
+        
+        
+        CSVFileCompetencesPersonnel maListCompPerso = new CSVFileCompetencesPersonnel();
+        maListCompPerso.recupCompetencesPersonnel(maListComp.getList(), maListPerso.getList());
+        
+        maListPerso.afficher();
+        
+        
     }
     
 }

@@ -32,6 +32,9 @@ public class CSVFileListeCompetences extends CSVFile {
             ensembleComp.add(maComp);
         }  
     }
+    public ArrayList<Competence> getList(){
+        return ensembleComp ;
+    }
     public void afficher(){
         for(Competence comp : ensembleComp){
             System.out.println(comp.toString());

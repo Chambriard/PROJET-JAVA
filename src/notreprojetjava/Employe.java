@@ -48,7 +48,13 @@ public class Employe {
     }
     
     public String toString(){
-        return prenom + " " + nom + " - Date d'entrée en entreprise : " + dateE + ".";
+        String chaine ;
+        chaine = prenom + " " + nom + " - Date d'entrée en entreprise : " + dateE + ".";
+        chaine = chaine + " les Competences de l'employé" ;
+        for(Competence uneComp : lesCompetences){
+            chaine = chaine + uneComp.toStringId();
+        }
+        return chaine ;
     }
     
 }

@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -17,13 +18,16 @@ import java.util.Scanner;
  */
 public class CSVFileCompetencesPersonnel extends CSVFile {
     
-    public CSVFileCompetencesPersonnel(String nom) throws FileNotFoundException {
-        super();
+    public CSVFileCompetencesPersonnel() throws FileNotFoundException {
+        //super();
         nom = "competences_personnel.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
         this.sc = new Scanner(new FileReader(path));
+        
     }
     public void recupCompetencesPersonnel(ArrayList<Competence> lesComp, ArrayList<Employe> lesEmp){
+        //récupération des num employés dans la list du CSVEmployé avec leur compétence associé 
+        // dans la list du CSVComp
         while(sc.hasNextLine()) {
             String[] chaineDecoupe = null;
             String idEmp ;
@@ -32,11 +36,12 @@ public class CSVFileCompetencesPersonnel extends CSVFile {
             Employe monEmpFichier = new Employe(idEmp) ;
             for(Employe unEmpList : lesEmp){
                 if (unEmpList.equals(monEmpFichier)){
-                    int i =1; 
+                    int i = 1; 
                     while(i< chaineDecoupe.length){
                         Competence uneComFiche = new Competence(chaineDecoupe[i]);
                         for(Competence uneCompList : lesComp){
                             if(uneComFiche.equals(uneCompList)){
+                                //System.out.println("Coucou");
                                 unEmpList.ajouterComp(uneCompList);
                             }
                         }
@@ -44,7 +49,7 @@ public class CSVFileCompetencesPersonnel extends CSVFile {
                     }
                 }
             }
-            
         }
     }
+    
 }

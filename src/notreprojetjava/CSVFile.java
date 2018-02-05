@@ -34,7 +34,9 @@ public abstract class CSVFile {
         while(sc.hasNextLine()) {
             System.out.println(sc.nextLine());
         }*/
-        for(HashMap.Entry<String,ArrayList<Competence> > entry : ensembleEmpComp.entrySet()) {
+        System.out.println("Coucou");
+        for(HashMap.Entry<String,ArrayList<Competence>> entry : ensembleEmpComp.entrySet()) {
+            
             String key = entry.getKey();
             ArrayList<Competence> value = entry.getValue();
             System.out.println("id emp : " + key);
