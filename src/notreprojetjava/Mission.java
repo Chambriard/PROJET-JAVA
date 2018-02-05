@@ -15,7 +15,7 @@ import java.util.HashMap;
  */
 public class Mission {
     
-    private int id;
+    private String id;
     private String libelle;
     private int statut;
     private Date dateDeb;
@@ -24,12 +24,22 @@ public class Mission {
     HashMap<Competence, Integer> CompReq;
     ArrayList<Employe> equipeMission;
     
-    public Mission(int id, String libelle, Date DateDeb, Date DateFin, int nbEmpTot){
+    public Mission(String id, String libelle, Date DateDeb, Date DateFin, int nbEmpTot){
         this.id = id;
         this.libelle = libelle;
         this.statut = 1;
         this.dateDeb = dateDeb;
         this.dateFin = dateFin;
+        this.nbEmpTot = nbEmpTot;
+        CompReq = new HashMap<Competence, Integer>();
+        equipeMission = new ArrayList<Employe>();
+    }
+    public Mission(String id, String libelle, int nbEmpTot){
+        this.id = id;
+        this.libelle = libelle;
+        this.statut = 1;
+        this.dateDeb = null;
+        this.dateFin = null;
         this.nbEmpTot = nbEmpTot;
         CompReq = new HashMap<Competence, Integer>();
         equipeMission = new ArrayList<Employe>();

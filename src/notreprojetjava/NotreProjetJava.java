@@ -7,6 +7,7 @@ package notreprojetjava;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
+import javax.swing.JFrame;
 
 /**
  *
@@ -46,7 +47,6 @@ public class NotreProjetJava {
         maListCompPerso.recupCompetencesPersonnel(maListComp.getList(), maListPerso.getList());
         
         maListPerso.afficher();
-        
         
     }
     

@@ -5,16 +5,10 @@
  */
 package notreprojetjava;
 
-import java.io.FileNotFoundException;
-
 /**
  *
- * @author Utilisateur
+ * @author achambri
  */
-public class CSVFileListeMission extends CSVFile {
-    
-    public CSVFileListeMission(String nom) throws FileNotFoundException {
-        
-    }
+public class CSVFileListeMissionPersonnel {
     
 }
