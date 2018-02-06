@@ -34,19 +34,22 @@ public class Mission {
         CompReq = new HashMap<Competence, Integer>();
         equipeMission = new ArrayList<Employe>();
     }
-    public Mission(String id, String libelle, int nbEmpTot){
+    public Mission(String id, String libelle,int statut, Date DateDeb, Date DateFin, int nbEmpTot){
         this.id = id;
         this.libelle = libelle;
-        this.statut = 1;
-        this.dateDeb = null;
-        this.dateFin = null;
+        this.statut = statut;
+        this.dateDeb = dateDeb;
+        this.dateFin = dateFin;
         this.nbEmpTot = nbEmpTot;
         CompReq = new HashMap<Competence, Integer>();
         equipeMission = new ArrayList<Employe>();
     }
     
+    
     public String toString(){
-        return "";
+        String chaine ;
+        chaine = this.id + this.libelle + this.statut + this.dateDeb + this.dateFin + this.nbEmpTot ;
+        return chaine;
     }
     
     // public void ajoutComp(...){}

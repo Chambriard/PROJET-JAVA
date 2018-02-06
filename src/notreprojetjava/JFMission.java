@@ -138,7 +138,7 @@ public class JFMission extends javax.swing.JFrame {
 
     private void AjouterMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AjouterMissionMouseClicked
         // TODO add your handling code here:
-        Mission uneMiss = new Mission(IdMission.getText(),LibelleMission.getText(), Integer.parseInt(NombreEmployeMax.getText()));
+        //Mission uneMiss = new Mission(IdMission.getText(),LibelleMission.getText(), Integer.parseInt(NombreEmployeMax.getText()));
         
     }//GEN-LAST:event_AjouterMissionMouseClicked
 

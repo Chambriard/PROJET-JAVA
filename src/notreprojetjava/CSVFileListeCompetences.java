@@ -21,7 +21,6 @@ public class CSVFileListeCompetences extends CSVFile {
         nom = "liste_competences.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
         this.sc = new Scanner(new FileReader(path));
-        //création d'une hashmap
         ensembleComp = new ArrayList<Competence>();   
     }
     public void recupCompetence(){

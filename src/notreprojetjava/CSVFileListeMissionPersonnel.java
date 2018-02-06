@@ -5,10 +5,23 @@
  */
 package notreprojetjava;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author achambri
  */
-public class CSVFileListeMissionPersonnel {
+public class CSVFileListeMissionPersonnel extends CSVFile {
+    private ArrayList<Mission> ensembleMission ; 
+    public CSVFileListeMissionPersonnel() throws FileNotFoundException {
+        nom = "liste_MissionPersonnel.csv";
+        path = System.getProperty("user.dir") + "\\data\\" + nom;
+        this.sc = new Scanner(new FileReader(path));
+        //création d'une hashmap
+        ensembleMission = new ArrayList<Mission>();   
+    }
     
 }
