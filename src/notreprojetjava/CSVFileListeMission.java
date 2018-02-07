@@ -8,6 +8,7 @@ package notreprojetjava;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -22,7 +23,6 @@ public class CSVFileListeMission extends CSVFile{
         nom = "liste_Mission.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
         this.sc = new Scanner(new FileReader(path));
-        //création d'une hashmap
         ensembleMission = new ArrayList<Mission>();   
     }
     public void recupMission() throws FileNotFoundException, ParseException{
@@ -33,12 +33,11 @@ public class CSVFileListeMission extends CSVFile{
             Date dateFin ;
             String[] chaineDecoupe = null;
             chaineDecoupe = sc.nextLine().split(";");
-            //System.out.println(chaineDecoupe[0]);
             statut = Integer.parseInt(chaineDecoupe[2]);
             nbPersoMax = Integer.parseInt(chaineDecoupe[5]);
-            dateDeb = new Date(chaineDecoupe[3]);
-            dateFin = new Date(chaineDecoupe[4]);
-            
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            dateDeb = formatter.parse(chaineDecoupe[3]);
+            dateFin = formatter.parse(chaineDecoupe[4]);
             ensembleMission.add(new Mission(chaineDecoupe[0], chaineDecoupe[1], statut, dateDeb,dateFin,nbPersoMax));
         }
     }
@@ -46,5 +45,8 @@ public class CSVFileListeMission extends CSVFile{
         for(Mission maMission : ensembleMission){
             System.out.println(maMission.toString());
         }
+    }
+    public ArrayList<Mission> getList(){
+        return ensembleMission ;
     }
 }

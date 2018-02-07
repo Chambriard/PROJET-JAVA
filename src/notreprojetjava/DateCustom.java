@@ -9,25 +9,27 @@ package notreprojetjava;
  *
  * @author achambri
  */
-public class Date {
+public class DateCustom {
     int jour ;
-    int moin ;
+    int mois ;
     int annee ;
-    public Date(int jour, int moin, int annee){
+    public DateCustom(int jour, int mois, int annee){
         this.jour = jour ;
         this.annee = annee ;
-        this.moin = moin ;
+        this.mois = mois ;
     }
-    public Date(String date){
+    public DateCustom(String date){
+        // REPRENDRE ICI problème de date
         String[] chaineDecoupe = null;
         chaineDecoupe = date.split("/");
         this.jour = Integer.parseInt(chaineDecoupe[0]);
-        this.moin = Integer.parseInt(chaineDecoupe[1]);
+        this.mois = Integer.parseInt(chaineDecoupe[1]);
         this.annee = Integer.parseInt(chaineDecoupe[2]);
     }
-    public String ToString(){
+    
+    public String afficher(){
         String chaine;
-        chaine = "" + this.jour + "/" + this.moin + "/" + this.annee;
+        chaine = "" + this.jour + "/" + this.mois + "/" + this.annee;
         return chaine ;
     }
     

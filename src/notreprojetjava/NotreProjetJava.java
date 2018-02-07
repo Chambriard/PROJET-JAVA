@@ -32,7 +32,7 @@ public class NotreProjetJava {
         System.out.println(c.toString());
         System.out.println(c.returnFormat());
         */
-        /*
+        
         CSVFileListeCompetences maListComp = new CSVFileListeCompetences();
         maListComp.recupCompetence();
    
@@ -46,11 +46,14 @@ public class NotreProjetJava {
         CSVFileCompetencesPersonnel maListCompPerso = new CSVFileCompetencesPersonnel();
         maListCompPerso.recupCompetencesPersonnel(maListComp.getList(), maListPerso.getList());
         
-        maListPerso.afficher();
-       */
+       
         
         CSVFileListeMission maListMission = new CSVFileListeMission();
         maListMission.recupMission();
+        
+        CSVFileListeMissionPersonnel maListMissionPerso = new CSVFileListeMissionPersonnel();
+        maListMissionPerso.recupPeronnel(maListMission.getList(),maListPerso.getList());
+        
         maListMission.afficher();
         
     }

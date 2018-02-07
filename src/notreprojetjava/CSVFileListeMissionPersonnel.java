@@ -14,14 +14,35 @@ import java.util.Scanner;
  *
  * @author achambri
  */
-public class CSVFileListeMissionPersonnel extends CSVFile {
-    private ArrayList<Mission> ensembleMission ; 
+public class CSVFileListeMissionPersonnel extends CSVFile { 
     public CSVFileListeMissionPersonnel() throws FileNotFoundException {
         nom = "liste_MissionPersonnel.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
-        this.sc = new Scanner(new FileReader(path));
-        //création d'une hashmap
-        ensembleMission = new ArrayList<Mission>();   
+        this.sc = new Scanner(new FileReader(path)); 
+    }
+    public void recupPeronnel(ArrayList<Mission> lesMissions, ArrayList<Employe> lesEmployes){
+        while(sc.hasNextLine()) {
+            String[] chaineDecoupe = null;
+            chaineDecoupe = sc.nextLine().split(";");
+            
+            for(Mission uneMiss : lesMissions){
+            //System.out.println(uneMiss.getId());
+            //System.out.println(chaineDecoupe[0]);
+                if(uneMiss.getId().equalsIgnoreCase(chaineDecoupe[0]))
+                {
+                    int i = 1;
+                    while(i< chaineDecoupe.length){
+                        for(Employe unEmp : lesEmployes){
+                            if(unEmp.getId().equalsIgnoreCase(chaineDecoupe[i])){
+                                //System.out.println("COUCOU");
+                                uneMiss.equipeMission.add(unEmp);
+                            }
+                        }
+                        i++ ;
+                    }
+                }
+            }
+        }
     }
     
 }

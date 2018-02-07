@@ -46,6 +46,9 @@ public class Employe {
             return false;
         return true;              
     }
+    public String getId(){
+        return id ;
+    }
     
     public String toString(){
         String chaine ;
