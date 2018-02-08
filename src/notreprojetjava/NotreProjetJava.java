@@ -54,6 +54,9 @@ public class NotreProjetJava {
         CSVFileListeMissionPersonnel maListMissionPerso = new CSVFileListeMissionPersonnel();
         maListMissionPerso.recupPeronnel(maListMission.getList(),maListPerso.getList());
         
+        CSVFileListeMissionCompetences maListMissionComp = new CSVFileListeMissionCompetences();
+        maListMissionComp.RecupeCompRequise( maListMission.getList(), maListComp.getList());
+        
         maListMission.afficher();
         
     }

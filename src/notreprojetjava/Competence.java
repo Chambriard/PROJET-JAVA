@@ -41,4 +41,7 @@ public class Competence {
             return false;
         return true;              
     }
+    public String getId(){
+        return id ;
+    }
 }

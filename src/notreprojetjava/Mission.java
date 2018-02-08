@@ -57,6 +57,12 @@ public class Mission {
         String chaine ;
         chaine = this.id + " " + this.libelle + " " + this.statut + " " + formatter.format(this.dateDeb) + " " + formatter.format(this.dateFin) + " " + this.nbEmpTot ;
         chaine = chaine + equipeMission.toString();
+        for(HashMap.Entry<Competence,Integer> entry :CompReq.entrySet()){
+            Competence key = entry.getKey();
+            int value = entry.getValue();
+            chaine = chaine + System.getProperty("line.separator") + key.toString();
+            chaine = chaine + System.getProperty("line.separator") + "nb fois requis " + value;
+        }
         return chaine;
     }
     

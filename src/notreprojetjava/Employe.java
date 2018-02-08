@@ -52,10 +52,10 @@ public class Employe {
     
     public String toString(){
         String chaine ;
-        chaine = prenom + " " + nom + " - Date d'entrée en entreprise : " + dateE + ".";
-        chaine = chaine + " les Competences de l'employé" ;
+        chaine =  "Employe" + prenom + " " + nom + " - Date d'entrée en entreprise : " + dateE + ".";
+        chaine = chaine + System.getProperty("line.separator") + " les Competences de l'employé" ;
         for(Competence uneComp : lesCompetences){
-            chaine = chaine + uneComp.toStringId();
+            chaine = chaine + System.getProperty("line.separator") + uneComp.toStringId();
         }
         return chaine ;
     }

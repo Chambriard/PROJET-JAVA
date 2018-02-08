@@ -26,15 +26,12 @@ public class CSVFileListeMissionPersonnel extends CSVFile {
             chaineDecoupe = sc.nextLine().split(";");
             
             for(Mission uneMiss : lesMissions){
-            //System.out.println(uneMiss.getId());
-            //System.out.println(chaineDecoupe[0]);
                 if(uneMiss.getId().equalsIgnoreCase(chaineDecoupe[0]))
                 {
                     int i = 1;
                     while(i< chaineDecoupe.length){
                         for(Employe unEmp : lesEmployes){
                             if(unEmp.getId().equalsIgnoreCase(chaineDecoupe[i])){
-                                //System.out.println("COUCOU");
                                 uneMiss.equipeMission.add(unEmp);
                             }
                         }
