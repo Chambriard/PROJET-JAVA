@@ -18,7 +18,7 @@ import java.util.Scanner;
  * @author achambri
  */
 public class CSVFileListeMission extends CSVFile{
-    private ArrayList<Mission> ensembleMission ; 
+    ArrayList<Mission> ensembleMission ; 
     public CSVFileListeMission() throws FileNotFoundException {
         nom = "liste_Mission.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
