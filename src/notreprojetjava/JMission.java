@@ -19,9 +19,10 @@ public class JMission extends javax.swing.JFrame {
     /**
      * Creates new form JMission
      */
-    private ArrayList<Mission> maListeMission ;
-    public JMission() throws FileNotFoundException {
+    static ArrayList<Mission> maListeMission ;
+    public JMission(ArrayList<Mission> maListeMission) throws FileNotFoundException {
         initComponents();
+        this.maListeMission = maListeMission ;     
     }
 
     /**
@@ -90,12 +91,12 @@ public class JMission extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                /*
                 try {
-                    new JMission().setVisible(true);
+                    new JMission(maListeMission).setVisible(true);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(JMission.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
+                }*/  
             }
         });
     }
@@ -105,7 +106,4 @@ public class JMission extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void recupeListeMission(ArrayList<Mission> maListeMission) {
-       this.maListeMission = maListeMission ;
-    }
 }

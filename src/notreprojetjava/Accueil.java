@@ -67,6 +67,7 @@ public class Accueil extends javax.swing.JFrame {
         // TODO add your handling code here:
         //REPRENDRE ICI RECUP DES INFO DANS L'ACCUEIL 
         //Instanciation des données présentent dans la doc CSV
+        
         //Instanciation de CSVFileListeCompetences
         CSVFileListeCompetences maListComp = null;
         try {
@@ -90,6 +91,14 @@ public class Accueil extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //Instanciation CSVFileCompetecesPersonnel
+        CSVFileCompetencesPersonnel maListCompPerso = null;
+        try {
+            maListCompPerso = new CSVFileCompetencesPersonnel();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        maListCompPerso.recupCompetencesPersonnel(maListComp.getList(), maListPerso.getList());
         
         //Instanciation CSVFileListeMission
         CSVFileListeMission maListMission = null;
@@ -123,16 +132,18 @@ public class Accueil extends javax.swing.JFrame {
             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
         }
         maListMissionComp.RecupeCompRequise( maListMission.getList(), maListComp.getList());
-        
+       
+        //Instanciation JFrame Mission 
         JMission frameMission = null;
         try {
-            frameMission = new JMission();
+            frameMission = new JMission(maListMission.getList());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         frameMission.setVisible(true);
         //problèmatique faire passer maListeMission dans JMission
+       
     }//GEN-LAST:event_GesionMissionMouseClicked
 
     /**
