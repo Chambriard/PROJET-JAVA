@@ -9,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -22,7 +24,12 @@ public class JMission extends javax.swing.JFrame {
     static ArrayList<Mission> maListeMission ;
     public JMission(ArrayList<Mission> maListeMission) throws FileNotFoundException {
         initComponents();
-        this.maListeMission = maListeMission ;     
+        this.maListeMission = maListeMission ; 
+        DefaultListModel DLM = new DefaultListModel();
+        for(Mission maMission : maListeMission){
+            DLM.addElement(maMission.getId());
+        }
+        listeEnsembleMiss.setModel(DLM);
     }
 
     /**
@@ -35,27 +42,27 @@ public class JMission extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        ListeMissionExi = new javax.swing.JList<>();
+        listeEnsembleMiss = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jScrollPane1.setViewportView(ListeMissionExi);
+        jScrollPane1.setViewportView(listeEnsembleMiss);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(156, 156, 156)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(126, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addContainerGap(129, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
         );
 
         pack();
@@ -87,10 +94,11 @@ public class JMission extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(JMission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+               
                 /*
                 try {
                     new JMission(maListeMission).setVisible(true);
@@ -102,8 +110,8 @@ public class JMission extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> ListeMissionExi;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listeEnsembleMiss;
     // End of variables declaration//GEN-END:variables
 
 }
