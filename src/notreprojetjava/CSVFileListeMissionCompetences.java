@@ -16,12 +16,16 @@ import java.util.Scanner;
  * @author ACHAMBRI
  */
 public class CSVFileListeMissionCompetences extends CSVFile{
+    
+    // Constructeur
     public CSVFileListeMissionCompetences() throws FileNotFoundException {
         nom = "liste_MissionCompetences.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
         this.sc = new Scanner(new FileReader(path)); 
     }
-    public void RecupeCompRequise(ArrayList<Mission> lesMissions,ArrayList<Competence> lesCompetences){
+    
+    // Méthodes
+    public void recupCompRequise(ArrayList<Mission> lesMissions,ArrayList<Competence> lesCompetences){
         while(sc.hasNextLine()) {
             String[] chaineDecoupe = null;
             chaineDecoupe = sc.nextLine().split(";");

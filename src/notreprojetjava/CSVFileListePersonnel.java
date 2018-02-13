@@ -34,7 +34,6 @@ public class CSVFileListePersonnel extends CSVFile {
     }
     
     public void recupEmployes() throws FileNotFoundException, ParseException{
-        
         while(sc.hasNextLine()) {
             String[] chaineDecoupe = null;
             chaineDecoupe = sc.nextLine().split(";");

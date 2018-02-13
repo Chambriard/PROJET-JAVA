@@ -14,12 +14,16 @@ import java.util.Scanner;
  *
  * @author achambri
  */
-public class CSVFileListeMissionPersonnel extends CSVFile { 
+public class CSVFileListeMissionPersonnel extends CSVFile {
+    
+    // Constructeur
     public CSVFileListeMissionPersonnel() throws FileNotFoundException {
         nom = "liste_MissionPersonnel.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
         this.sc = new Scanner(new FileReader(path)); 
     }
+    
+    // Méthodes
     public void recupPeronnel(ArrayList<Mission> lesMissions, ArrayList<Employe> lesEmployes){
         while(sc.hasNextLine()) {
             String[] chaineDecoupe = null;
@@ -41,5 +45,4 @@ public class CSVFileListeMissionPersonnel extends CSVFile {
             }
         }
     }
-    
 }
