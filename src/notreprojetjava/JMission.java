@@ -46,6 +46,11 @@ public class JMission extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        listeEnsembleMiss.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listeEnsembleMissMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listeEnsembleMiss);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -67,6 +72,21 @@ public class JMission extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void listeEnsembleMissMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeEnsembleMissMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount() == 2){
+            JDetailMission frameDetailMission = null ;
+            String codeMiss = listeEnsembleMiss.getSelectedValue();
+            for(Mission maMission : maListeMission){
+                if(maMission.getId().equals(codeMiss)){
+                    frameDetailMission = new JDetailMission(maMission);
+                    frameDetailMission.setVisible(true);
+                }
+            }
+           
+        }
+    }//GEN-LAST:event_listeEnsembleMissMouseClicked
 
     /**
      * @param args the command line arguments

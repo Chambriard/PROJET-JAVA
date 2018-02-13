@@ -49,7 +49,9 @@ public class Employe {
     public String getId(){
         return id ;
     }
-    
+    public String getNom(){
+        return nom ;
+    }
     public String toString(){
         String chaine ;
         chaine =  "Employe" + prenom + " " + nom + " - Date d'entrée en entreprise : " + dateE + ".";
