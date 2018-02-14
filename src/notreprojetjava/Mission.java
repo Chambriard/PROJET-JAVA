@@ -56,6 +56,9 @@ public class Mission {
     public String getId(){
         return id ;
     }
+    public String getLibelle(){
+        return libelle ;
+    }
     
     // Méthodes
     public String toString(){

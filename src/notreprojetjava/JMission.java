@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,11 +26,20 @@ public class JMission extends javax.swing.JFrame {
     public JMission(ArrayList<Mission> maListeMission) throws FileNotFoundException {
         initComponents();
         this.maListeMission = maListeMission ; 
-        DefaultListModel DLM = new DefaultListModel();
-        for(Mission maMission : maListeMission){
-            DLM.addElement(maMission.getId());
+        //définition du model d'un jtable, je récpère les infos des mission que je met dans ce model
+        //puis j'instancie mon jtable avec ce model 
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Numéro");
+        model.addColumn("Libellé");
+        model.addColumn("Statut");
+        model.addColumn("Détail");
+        for(Mission maMission : this.maListeMission){
+            model.addRow(new String[]{maMission.getId(),maMission.getLibelle()});
         }
-        listeEnsembleMiss.setModel(DLM);
+        
+        JTableMission.setModel(model);
+        
+        
     }
 
     /**
@@ -41,43 +51,72 @@ public class JMission extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listeEnsembleMiss = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        JTableMission = new javax.swing.JTable(){
+            public boolean isCellEditable(int d, int c){
+                return false;
+            }
+        };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        listeEnsembleMiss.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listeEnsembleMissMouseClicked(evt);
+        JTableMission.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Numéro", "Libellé", "Statut", "Détail"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(listeEnsembleMiss);
+        JTableMission.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                JTableMissionMousePressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(JTableMission);
+        if (JTableMission.getColumnModel().getColumnCount() > 0) {
+            JTableMission.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(129, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(305, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listeEnsembleMissMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeEnsembleMissMouseClicked
+    private void JTableMissionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableMissionMousePressed
         // TODO add your handling code here:
         if(evt.getClickCount() == 2){
             JDetailMission frameDetailMission = null ;
-            String codeMiss = listeEnsembleMiss.getSelectedValue();
+            int Ligne = JTableMission.getSelectedRow();
+            int colonne = 0;
+            String codeMiss = (String) JTableMission.getValueAt(Ligne, colonne);
+            System.out.println(codeMiss);
             for(Mission maMission : maListeMission){
                 if(maMission.getId().equals(codeMiss)){
                     frameDetailMission = new JDetailMission(maMission);
@@ -86,7 +125,7 @@ public class JMission extends javax.swing.JFrame {
             }
            
         }
-    }//GEN-LAST:event_listeEnsembleMissMouseClicked
+    }//GEN-LAST:event_JTableMissionMousePressed
 
     /**
      * @param args the command line arguments
@@ -128,10 +167,9 @@ public class JMission extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> listeEnsembleMiss;
+    private javax.swing.JTable JTableMission;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
 }
