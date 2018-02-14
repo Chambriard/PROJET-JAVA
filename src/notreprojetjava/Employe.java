@@ -15,6 +15,7 @@ import java.util.Date;
  */
 public class Employe {
     
+    // Attributs
     private String id;
     private String nom;
     private String prenom;
@@ -23,6 +24,7 @@ public class Employe {
     private ArrayList<Competence> lesCompetences; 
     //private CSVFile monCSV;
     
+    // Constructeur
     public Employe (String id , String nom, String prenom, String dateE) throws FileNotFoundException{
         this.id = id ;
         this.nom = nom;
@@ -30,6 +32,7 @@ public class Employe {
         this.dateE = dateE ;
         lesCompetences = new ArrayList<Competence>() ;
     }
+    
     public Employe (String id){
         this.id = id ;
         this.nom = "";
@@ -37,21 +40,32 @@ public class Employe {
         this.dateE = null ;
         lesCompetences = new ArrayList<Competence>() ;
     }
+    
+    // Accesseurs
+    public String getId(){
+        return id ;
+    }
+    
+    public String getNom(){
+        return nom ;
+    }
+    
+    public ArrayList<Competence> getCompetences(){
+        return lesCompetences;
+    }
+    
+    // Méthodes
     public void ajouterComp(Competence uneComp){
         lesCompetences.add(uneComp);
     }
+    
     public boolean equals(Object obj){
         Employe other =(Employe)obj;
         if(!this.id.equals(other.id))
             return false;
         return true;              
     }
-    public String getId(){
-        return id ;
-    }
-    public String getNom(){
-        return nom ;
-    }
+        
     public String toString(){
         String chaine ;
         chaine =  "Employe" + prenom + " " + nom + " - Date d'entrée en entreprise : " + dateE + ".";
