@@ -131,7 +131,7 @@ public class Accueil extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
         }
-        maListMissionComp.RecupeCompRequise( maListMission.getList(), maListComp.getList());
+        maListMissionComp.recupCompRequise( maListMission.getList(), maListComp.getList());
        
         //Instanciation JFrame Mission 
         JMission frameMission = null;

@@ -18,13 +18,25 @@ import java.util.Scanner;
  * @author achambri
  */
 public class CSVFileListeMission extends CSVFile{
-    ArrayList<Mission> ensembleMission ; 
+    
+    // Attributs
+    ArrayList<Mission> ensembleMission; 
+    
+    
+    // Constructeur
     public CSVFileListeMission() throws FileNotFoundException {
         nom = "liste_Mission.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
         this.sc = new Scanner(new FileReader(path));
         ensembleMission = new ArrayList<Mission>();   
     }
+    
+    // Accesseurs
+    public ArrayList<Mission> getList(){
+        return ensembleMission ;
+    }
+    
+    // Méthodes
     public void recupMission() throws FileNotFoundException, ParseException{
         while(sc.hasNextLine()) {
             int statut ;
@@ -41,12 +53,11 @@ public class CSVFileListeMission extends CSVFile{
             ensembleMission.add(new Mission(chaineDecoupe[0], chaineDecoupe[1], statut, dateDeb,dateFin,nbPersoMax));
         }
     }
-     public void afficher(){
+    
+    public void afficher(){
         for(Mission maMission : ensembleMission){
             System.out.println(maMission.toString());
         }
     }
-    public ArrayList<Mission> getList(){
-        return ensembleMission ;
-    }
+    
 }

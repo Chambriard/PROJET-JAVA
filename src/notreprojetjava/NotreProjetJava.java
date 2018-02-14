@@ -33,29 +33,34 @@ public class NotreProjetJava {
         System.out.println(c.returnFormat());
         */
         
+       /* // TEST CSVFileListeCompetences()*/
         CSVFileListeCompetences maListComp = new CSVFileListeCompetences();
         maListComp.recupCompetence();
+        //maListComp.afficher();
    
         
-        
+        // TEST CSVFileListePersonnel()
         CSVFileListePersonnel maListPerso = new CSVFileListePersonnel();
         maListPerso.recupEmployes();
+        //maListPerso.afficher();
         
         
-        
+        // TEST CSVFileCompetencesPersonnel()
         CSVFileCompetencesPersonnel maListCompPerso = new CSVFileCompetencesPersonnel();
         maListCompPerso.recupCompetencesPersonnel(maListComp.getList(), maListPerso.getList());
-        
+        //maListPerso.afficher();
        
         
         CSVFileListeMission maListMission = new CSVFileListeMission();
         maListMission.recupMission();
+        maListMission.afficher();
+        
         
         CSVFileListeMissionPersonnel maListMissionPerso = new CSVFileListeMissionPersonnel();
         maListMissionPerso.recupPeronnel(maListMission.getList(),maListPerso.getList());
         
         CSVFileListeMissionCompetences maListMissionComp = new CSVFileListeMissionCompetences();
-        maListMissionComp.RecupeCompRequise( maListMission.getList(), maListComp.getList());
+        maListMissionComp.recupCompRequise( maListMission.getList(), maListComp.getList());
         
         maListMission.afficher();
         

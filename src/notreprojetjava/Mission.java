@@ -17,6 +17,7 @@ import java.util.HashMap;
  */
 public class Mission {
     
+    // Attributs
     private String id;
     private String libelle;
     private int statut;
@@ -26,6 +27,7 @@ public class Mission {
     HashMap<Competence, Integer> CompReq;
     ArrayList<Employe> equipeMission;
     
+    // Constructeur
     public Mission(String id, String libelle, Date dateDeb, Date dateFin, int nbEmpTot){
         this.id = id;
         this.libelle = libelle;
@@ -36,6 +38,7 @@ public class Mission {
         CompReq = new HashMap<Competence, Integer>();
         equipeMission = new ArrayList<Employe>();
     }
+    
     public Mission(String id, String libelle,int statut, Date dateDeb, Date dateFin, int nbEmpTot){
         //System.out.println(dateDeb.afficher());
         //System.out.println(dateFin.afficher());
@@ -48,10 +51,13 @@ public class Mission {
         CompReq = new HashMap<Competence, Integer>();
         equipeMission = new ArrayList<Employe>();
     }
+    
+    // Accesseurs
     public String getId(){
         return id ;
     }
     
+    // Méthodes
     public String toString(){
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String chaine ;
