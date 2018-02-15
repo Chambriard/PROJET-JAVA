@@ -75,13 +75,77 @@ public class Mission {
         return chaine;
     }
     
-    // public void ajoutComp(...){}
+    /**
+     * Permet l'ajout d'une compétence nécessaire à la mission
+     * @param comp
+     * @param nb 
+     */
+    public void ajoutComp(Competence comp, Integer nb){
+        if(!CompReq.containsKey(comp))
+            CompReq.put(comp, nb);
+        else
+            System.out.println("La compétence existe déjà dans la mission");
+    }
     
-    // public void ajoutEmp(...){}
+    /**
+     * Supprime une compétence nécessaire à la mission
+     * @param comp 
+     */
+    public void supprComp(Competence comp){
+        if(CompReq.containsKey(comp))
+            CompReq.remove(comp);
+        else
+            System.out.println("La compétence n'existe pas dans la mission");
+    }
     
-    // public void supprComp(...){}
+    /**
+     * Modifie le nombre d'itération d'une compétence nécessaire
+     * @param comp
+     * @param nb 
+     */
+    public void modifNbComp(Competence comp, Integer nb){
+        CompReq.put(comp, nb);
+    }
     
-    // public void supprEmp(...){}
+    /**
+     * Ajoute un employé à la mission
+     * @param e 
+     */
+    public void ajoutEmp(Employe e){
+        if(equipeMission.size() < nbEmpTot){
+            equipeMission.add(e);
+            int nb;
+            // On désincrémente de 1 chaque compétence de la mission que l'employé dispose.
+            for(Competence c : e.getCompetences()){
+                if(CompReq.containsKey(c)){
+                    nb = CompReq.get(c);
+                    nb--;
+                    CompReq.put(c, nb);
+                }
+            }
+        }
+        else
+            System.out.println("Le nombre maximal d'employés est atteint pour cette mission.");
+    }
+    
+    /**
+     * Supprime un employé d'une mission
+     * @param e 
+     */
+    public void supprEmp(Employe e){
+        if(equipeMission.contains(e)){
+            equipeMission.remove(e);
+            int nb;
+            // On incrémente de 1 chaque compétence de la mission que l'employé dispose.
+            for(Competence c : e.getCompetences()){
+                if(CompReq.containsKey(c)){
+                    nb = CompReq.get(c);
+                    nb++;
+                    CompReq.put(c, nb);
+                }
+            }
+        }
+    }
     
     // public void changerStatut(...){}
     
