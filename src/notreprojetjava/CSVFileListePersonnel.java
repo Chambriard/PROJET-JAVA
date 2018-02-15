@@ -19,8 +19,18 @@ import java.util.Scanner;
  */
 public class CSVFileListePersonnel extends CSVFile {
     
+    //attribus
     private ArrayList<Employe> lesEmployes;
-    
+    //Accesseur 
+     public ArrayList<Employe> getList(){
+        return lesEmployes ;
+    }
+    //Constrcuteur
+    /**
+     * Constructeur qui permet de définir le CSV a intéroger et d'intancier le scanner 
+     * pour pouvoir parcourir le CSV
+     * @throws FileNotFoundException 
+     */
     public CSVFileListePersonnel() throws FileNotFoundException {
         //super();
         nom = "liste_personnel.csv";
@@ -29,10 +39,15 @@ public class CSVFileListePersonnel extends CSVFile {
         lesEmployes = new ArrayList<Employe>();
     }
     
-    public ArrayList<Employe> getList(){
-        return lesEmployes ;
-    }
-    
+   
+    //Méthodes
+    /**
+     * Dans le CSV Liste_personnel nous avons l'ensemble du personnel
+     * cette méthode permet de récupérer les employé et de les définir dans la
+     * liste lesEmployes
+     * @throws FileNotFoundException
+     * @throws ParseException 
+     */
     public void recupEmployes() throws FileNotFoundException, ParseException{
         while(sc.hasNextLine()) {
             String[] chaineDecoupe = null;

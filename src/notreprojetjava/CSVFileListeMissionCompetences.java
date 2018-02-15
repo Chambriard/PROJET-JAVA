@@ -18,6 +18,11 @@ import java.util.Scanner;
 public class CSVFileListeMissionCompetences extends CSVFile{
     
     // Constructeur
+    /**
+     * Constructeur qui permet de définir le CSV a intéroger et d'intancier le scanner 
+     * pour pouvoir parcourir le CSV
+     * @throws FileNotFoundException 
+     */
     public CSVFileListeMissionCompetences() throws FileNotFoundException {
         nom = "liste_MissionCompetences.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
@@ -25,6 +30,12 @@ public class CSVFileListeMissionCompetences extends CSVFile{
     }
     
     // Méthodes
+    /**
+     * Cette méthode permet d'intancier les listes de compétence dans les missions de 
+     * la liste de mission passé en paramêtre( cette liste sera la liste de mission de la classe CSVFileMission)
+     * @param lesMissions
+     * @param lesCompetences 
+     */
     public void recupCompRequise(ArrayList<Mission> lesMissions,ArrayList<Competence> lesCompetences){
         while(sc.hasNextLine()) {
             String[] chaineDecoupe = null;

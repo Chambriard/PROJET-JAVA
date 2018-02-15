@@ -44,18 +44,6 @@ public abstract class CSVFile {
                  System.out.println("id comp : " + comp.toStringId());
             }
         }
-        
-        // Test sur les noms
-        /*switch(this.nom){
-            case "competences_personnel.csv" : System.out.println("C'est la liste des compétences de chaque personne.");
-            break;
-            
-            case "liste_personnel.csv" : System.out.println("C'est la liste du personnel.");
-            break;
-            
-            case "liste_competences.csv" : System.out.println("C'est la liste des compétences.");
-            break;
-        }*/
     }
     
     public String toString(){

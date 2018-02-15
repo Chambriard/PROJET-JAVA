@@ -6,14 +6,19 @@
 package notreprojetjava;
 
 /**
- *
+ * 
  * @author Chambriard
  */
 public class Competence {
+    //Attribus
     private String id ;
     private String nomAng ;
     private String nomFra ;
-    
+    //Accesseur
+    public String getId(){
+        return id ;
+    }
+    //Constrcteur
     public Competence (String id, String nomAng, String nomFra){
         this.id = id;
         this.nomAng = nomAng;
@@ -24,6 +29,7 @@ public class Competence {
         this.nomAng = "";
         this.nomFra = "";
     }
+    //Méthodes
     public String toStringId(){
         return id ;
     }
@@ -40,8 +46,5 @@ public class Competence {
         if(!this.id.equals(other.id))
             return false;
         return true;              
-    }
-    public String getId(){
-        return id ;
     }
 }

@@ -23,7 +23,11 @@ public class CSVFileListeMission extends CSVFile{
     ArrayList<Mission> ensembleMission; 
     
     
-    // Constructeur
+   /**
+    * Constructeur qui permet de définir le CSV a intéroger et d'intancier le scanner 
+    * pour pouvoir parcourir le CSV
+    * @throws FileNotFoundException 
+    */
     public CSVFileListeMission() throws FileNotFoundException {
         nom = "liste_Mission.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
@@ -37,6 +41,12 @@ public class CSVFileListeMission extends CSVFile{
     }
     
     // Méthodes
+    /**
+     * Permet de récupérer les missions dans le CSV et de les instancier dans la 
+     * liste de Mission ensembleMission
+     * @throws FileNotFoundException
+     * @throws ParseException 
+     */
     public void recupMission() throws FileNotFoundException, ParseException{
         while(sc.hasNextLine()) {
             int statut ;
