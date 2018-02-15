@@ -56,8 +56,13 @@ public class Mission {
     public String getId(){
         return id ;
     }
+    
     public String getLibelle(){
         return libelle ;
+    }
+    
+    public void setStatut(int s){
+        statut = s;
     }
     
     // Méthodes
