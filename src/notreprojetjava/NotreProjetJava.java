@@ -6,6 +6,7 @@
 package notreprojetjava;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.ParseException;
 import javax.swing.JFrame;
 
@@ -18,7 +19,7 @@ public class NotreProjetJava {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException, ParseException {
+    public static void main(String[] args) throws FileNotFoundException, ParseException, IOException {
         System.out.println(" *** DEBUT *** ");
         
         //CSVFile personnel = new CSVFile("liste_personnel.csv");
@@ -53,7 +54,7 @@ public class NotreProjetJava {
         
         CSVFileListeMission maListMission = new CSVFileListeMission();
         maListMission.recupMission();
-        maListMission.afficher();
+        //maListMission.afficher();
         
         
         CSVFileListeMissionPersonnel maListMissionPerso = new CSVFileListeMissionPersonnel();
@@ -62,7 +63,19 @@ public class NotreProjetJava {
         CSVFileListeMissionCompetences maListMissionComp = new CSVFileListeMissionCompetences();
         maListMissionComp.recupCompRequise( maListMission.getList(), maListComp.getList());
         
-        maListMission.afficher();
+        //maListMission.afficher();
+        
+        System.out.println(maListPerso.lireListe());
+        System.out.println(maListPerso.getList().size());
+        
+        maListPerso.ajoutEmp("Lefebvre", "Jerome", "17/02/2018");
+        
+        System.out.println(maListPerso.lireListe());
+        System.out.println(maListPerso.getList().size());
+        
+        maListPerso.sauvegarder();
+        
+        //System.out.println(maListCompPerso.lireListe());
         
     }
     

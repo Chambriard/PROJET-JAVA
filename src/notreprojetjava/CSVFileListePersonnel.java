@@ -7,6 +7,8 @@ package notreprojetjava;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,15 +21,17 @@ import java.util.Scanner;
  */
 public class CSVFileListePersonnel extends CSVFile {
     
-    //attribus
+    // Attributs
     private ArrayList<Employe> lesEmployes;
-    //Accesseur 
+    
+    // Accesseurs
      public ArrayList<Employe> getList(){
         return lesEmployes ;
     }
-    //Constrcuteur
+     
+    //Constructeur
     /**
-     * Constructeur qui permet de définir le CSV a intéroger et d'intancier le scanner 
+     * Constructeur qui permet de définir le CSV a interroger et d'intancier le scanner 
      * pour pouvoir parcourir le CSV
      * @throws FileNotFoundException 
      */
@@ -43,7 +47,7 @@ public class CSVFileListePersonnel extends CSVFile {
     //Méthodes
     /**
      * Dans le CSV Liste_personnel nous avons l'ensemble du personnel
-     * cette méthode permet de récupérer les employé et de les définir dans la
+     * cette méthode permet de récupérer les employés et de les définir dans la
      * liste lesEmployes
      * @throws FileNotFoundException
      * @throws ParseException 
@@ -62,5 +66,45 @@ public class CSVFileListePersonnel extends CSVFile {
         for(Employe monEmploye : lesEmployes){
             System.out.println(monEmploye.toString());
         }
+    }
+    
+    /**
+     * Retourne la liste des Employes au format CSV.
+     * Utilisée pour la sauvegarde.
+     * @return 
+     */
+    public String lireListe(){
+        String liste = "";
+        
+        for(Employe unEmploye : lesEmployes){
+            liste += unEmploye.getPrenom() + ";" + unEmploye.getNom() + ";" + unEmploye.getDate() + ";" + unEmploye.getId() + "\r\n";
+        }
+        
+        return liste;
+    }
+    
+    /**
+     * Sauvegarde la liste actuelle des Employes dans un fichier
+     * @throws IOException 
+     */
+    public void sauvegarder() throws IOException{
+        FileWriter fichier = new FileWriter(this.path);
+        fichier.write(lireListe());
+        fichier.close();
+        
+        System.out.println("Ecriture OK");
+    }
+    
+    /**
+     * Permet de créer un nouvel Employe, puis l'ajoute à la liste des Employés
+     * @param nom
+     * @param prenom
+     * @param date
+     * @throws FileNotFoundException 
+     */
+    public void ajoutEmp(String nom, String prenom, String date) throws FileNotFoundException{
+        // Récupération automatique de l'ID
+        Employe e = new Employe(String.valueOf(this.lesEmployes.size() + 1), nom, prenom, date);
+        lesEmployes.add(e);
     }
 }

@@ -7,6 +7,8 @@ package notreprojetjava;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +20,14 @@ import java.util.Scanner;
  */
 public class CSVFileCompetencesPersonnel extends CSVFile {
     
+    // Attributs
+    private HashMap<String, ArrayList<String>> lesCompEmployes;
+    
+    // Accesseurs
+     public HashMap<String, ArrayList<String>> getList(){
+        return lesCompEmployes ;
+    }
+    
     /**
      * Constructeur sans argument permet de définir le fichier à intéroger
      * et de d'instancier le scanner pour lire le fichier
@@ -27,7 +37,7 @@ public class CSVFileCompetencesPersonnel extends CSVFile {
         nom = "competences_personnel.csv";
         path = System.getProperty("user.dir") + "\\data\\" + nom;
         this.sc = new Scanner(new FileReader(path));
-        
+        lesCompEmployes = new HashMap<String, ArrayList<String>>();
     }
     /**
      * Permet pour chaque employé de la liste lesEmp, de lui affecter les compétences lui
@@ -74,6 +84,61 @@ public class CSVFileCompetencesPersonnel extends CSVFile {
                 }
             }
         }
+    }
+    
+    // Recupération dans une HashMap des infos telles quelles
+    public void recup2(){
+        while(sc.hasNextLine()) {
+            String[] chaineDecoupe = null;
+            chaineDecoupe = sc.nextLine().split(";");
+            
+            ArrayList<String> listeComp = new ArrayList<String>();
+            
+            int cpt = 1;
+            while(cpt < chaineDecoupe.length){
+                listeComp.add(chaineDecoupe[cpt]);
+                cpt++;
+            }
+            
+            this.lesCompEmployes.put(chaineDecoupe[0], listeComp);
+            //SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yy");
+            //Date d = sdf.parse(chaineDecoupe[2]);
+            //lesEmployes.add(new Employe(chaineDecoupe[3], chaineDecoupe[1], chaineDecoupe[0], chaineDecoupe[2]));
+        }
+    }
+    
+    /**
+     * Retourne la liste des Competences des Employes au format CSV.
+     * Utilisée pour la sauvegarde.
+     * @return 
+     */
+    public String lireListe(){
+        String liste = "";
+        
+        for(String key : lesCompEmployes.keySet()){
+            liste += key + ";";
+            
+            ArrayList<String> LesComp = new ArrayList<String>();
+            for(String c : LesComp){
+                liste += c + ";";
+            }
+            
+            liste += "\r\n";
+        }
+        
+        return liste;
+    }
+    
+    /**
+     * Sauvegarde la liste actuelle des Competences des Employes dans un fichier
+     * @throws IOException 
+     */
+    public void sauvegarder() throws IOException{
+        FileWriter fichier = new FileWriter(this.path);
+        fichier.write(lireListe());
+        fichier.close();
+        
+        System.out.println("Ecriture OK");
     }
     
 }
