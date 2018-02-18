@@ -96,6 +96,16 @@ public class CSVFileListePersonnel extends CSVFile {
     }
     
     /**
+     * Récupère l'ID max de la liste des employés
+     * @return 
+     */
+    public int recupIdMax(){
+        Employe e = lesEmployes.get(this.lesEmployes.size() - 1);
+        
+        return Integer.valueOf(e.getId());
+    }
+    
+    /**
      * Permet de créer un nouvel Employe, puis l'ajoute à la liste des Employés
      * @param nom
      * @param prenom
@@ -104,7 +114,7 @@ public class CSVFileListePersonnel extends CSVFile {
      */
     public void ajoutEmp(String nom, String prenom, String date) throws FileNotFoundException{
         // Récupération automatique de l'ID
-        Employe e = new Employe(String.valueOf(this.lesEmployes.size() + 1), nom, prenom, date);
+        Employe e = new Employe(String.valueOf(this.recupIdMax() + 1), nom, prenom, date);
         lesEmployes.add(e);
     }
 }

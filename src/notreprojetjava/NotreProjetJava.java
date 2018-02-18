@@ -64,7 +64,7 @@ public class NotreProjetJava {
         maListMissionComp.recupCompRequise( maListMission.getList(), maListComp.getList());
         
         //maListMission.afficher();
-        
+        /*System.out.println(maListPerso.max());
         System.out.println(maListPerso.lireListe());
         System.out.println(maListPerso.getList().size());
         
@@ -73,7 +73,9 @@ public class NotreProjetJava {
         System.out.println(maListPerso.lireListe());
         System.out.println(maListPerso.getList().size());
         
-        maListPerso.sauvegarder();
+        maListPerso.sauvegarder();*/
+        
+        System.out.println(maListPerso.recupIdMax());
         
         //System.out.println(maListCompPerso.lireListe());
         
