@@ -116,7 +116,6 @@ public class JMission extends javax.swing.JFrame {
             int Ligne = JTableMission.getSelectedRow();
             int colonne = 0;
             String codeMiss = (String) JTableMission.getValueAt(Ligne, colonne);
-            System.out.println(codeMiss);
             for(Mission maMission : maListeMission){
                 if(maMission.getId().equals(codeMiss)){
                     frameDetailMission = new JDetailMission(maMission);
