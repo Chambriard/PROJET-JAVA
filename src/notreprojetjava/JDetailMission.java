@@ -7,6 +7,8 @@ package notreprojetjava;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +25,7 @@ public class JDetailMission extends javax.swing.JFrame {
      * Creates new form JDetailMission
      */
     static Mission maMission ;
+    static ArrayList<Employe> lesEmployes ;
     public JDetailMission(Mission uneMission) {
         initComponents();
         
@@ -58,11 +61,20 @@ public class JDetailMission extends javax.swing.JFrame {
             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
         }
         maListCompPerso.recupCompetencesPersonnel(maListComp.getList(), maListPerso.getList());
- 
+        lesEmployes = maListPerso.getList();
         
         maMission = uneMission;
         
+        id.setText(uneMission.getId());
+        id.setEditable(false);
+        
+        //DATE :
+        SimpleDateFormat formatter = new SimpleDateFormat("dd");
+        //dateDebJ.setText();
+        
+        
         DefaultTableModel modelEmp = new DefaultTableModel();
+        modelEmp.addColumn("id");
         modelEmp.addColumn("Nom");
         modelEmp.addColumn("Prenom");
         for(Employe monEmpDuCSVFile : maListPerso.getList()){
@@ -74,16 +86,17 @@ public class JDetailMission extends javax.swing.JFrame {
                 }
             }
             if(!missione){
-                modelEmp.addRow(new String[]{monEmpDuCSVFile.getNom(),monEmpDuCSVFile.getPrenom()});
+                modelEmp.addRow(new String[]{monEmpDuCSVFile.getId(), monEmpDuCSVFile.getNom(),monEmpDuCSVFile.getPrenom()});
             }
         }
         lesEmp.setModel(modelEmp);
         
         DefaultTableModel modelEmpMiss = new DefaultTableModel();
+        modelEmpMiss.addColumn("id");
         modelEmpMiss.addColumn("Nom");
         modelEmpMiss.addColumn("Prenom");
         for(Employe monEmp : maMission.equipeMission){
-            modelEmpMiss.addRow(new String[]{monEmp.getNom(),monEmp.getPrenom()});
+            modelEmpMiss.addRow(new String[]{monEmp.getId(), monEmp.getNom(),monEmp.getPrenom()});
         }
         
         lesEmpDeLaMiss.setModel(modelEmpMiss);
@@ -113,6 +126,20 @@ public class JDetailMission extends javax.swing.JFrame {
             }
         };
         ajoutEmp = new javax.swing.JButton();
+        id = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        dateDebJ = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        dateDebM = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        dateDebA = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        dateFinJ = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        dateFinM = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        dateFinA = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,6 +180,20 @@ public class JDetailMission extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("ID :");
+
+        jLabel4.setText("Date début :");
+
+        jLabel5.setText("/");
+
+        jLabel6.setText("/");
+
+        jLabel7.setText("Date Fin :");
+
+        jLabel8.setText("/");
+
+        jLabel9.setText("/");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -165,29 +206,81 @@ public class JDetailMission extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
+                                .addGap(18, 18, 18)
                                 .addComponent(ajoutEmp))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 98, Short.MAX_VALUE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(dateFinJ, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(2, 2, 2)
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(dateFinM, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel9)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(dateFinA, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(dateDebJ, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(2, 2, 2)
+                                            .addComponent(jLabel5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(dateDebM, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(dateDebA, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(0, 128, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(dateDebJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(dateDebM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(dateDebA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(dateFinJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(dateFinM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(dateFinA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ajoutEmp))
-                .addGap(54, 54, 54)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        id.getAccessibleContext().setAccessibleName("id");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -195,16 +288,29 @@ public class JDetailMission extends javax.swing.JFrame {
     private void ajoutEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutEmpActionPerformed
         // TODO add your handling code here:
        
-        int Ligne = lesEmp.getSelectedRow();
-        int colonneNom = 0;
-        int colonnePrenom = 1 ;
-        String nom = (String) lesEmp.getValueAt(Ligne, colonneNom);
-        String prenom = (String) lesEmp.getValueAt(Ligne, colonnePrenom);
-         System.out.println(nom);
-         System.out.println(prenom);
-        DefaultTableModel model =(DefaultTableModel) lesEmp.getModel();
-        System.out.println(lesEmp.getModel().toString());
-        model.addRow(new Object[]{nom,prenom});
+        //Ajoute l'employé dans la Jtable lesEmpDeLaMiss
+        int ligne = lesEmp.getSelectedRow();
+        int colonneId = 0 ;
+        int colonneNom = 1;
+        int colonnePrenom = 2 ;
+        String id = (String) lesEmp.getValueAt(ligne, colonneId);
+        String nom = (String) lesEmp.getValueAt(ligne, colonneNom);
+        String prenom = (String) lesEmp.getValueAt(ligne, colonnePrenom);
+ 
+        DefaultTableModel modelLesEmpDeLaMission =(DefaultTableModel)  lesEmpDeLaMiss.getModel();
+        modelLesEmpDeLaMission.addRow(new Object[]{id,nom,prenom});
+        lesEmpDeLaMiss.setModel(modelLesEmpDeLaMission);
+        //Enlève l'employé das Jtable lesEmp
+        DefaultTableModel modelLesEmp =(DefaultTableModel)  lesEmp.getModel();
+        modelLesEmp.removeRow(ligne);
+        lesEmp.setModel(modelLesEmp);
+        
+        //Ajoute l'employé dans la liste d'employé de la mission
+        for(Employe unEmp : lesEmployes ){
+            if(unEmp.getId().equals(id)){
+                maMission.equipeMission.add(unEmp);
+            }
+        }
     }//GEN-LAST:event_ajoutEmpActionPerformed
 
     /**
@@ -249,8 +355,22 @@ public class JDetailMission extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ajoutEmp;
+    private javax.swing.JTextField dateDebA;
+    private javax.swing.JTextField dateDebJ;
+    private javax.swing.JTextField dateDebM;
+    private javax.swing.JTextField dateFinA;
+    private javax.swing.JTextField dateFinJ;
+    private javax.swing.JTextField dateFinM;
+    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable lesEmp;

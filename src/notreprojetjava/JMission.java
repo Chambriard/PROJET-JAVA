@@ -35,11 +35,8 @@ public class JMission extends javax.swing.JFrame {
         model.addColumn("Détail");
         for(Mission maMission : this.maListeMission){
             model.addRow(new String[]{maMission.getId(),maMission.getLibelle()});
-        }
-        
-        JTableMission.setModel(model);
-        
-        
+        }   
+        JTableMission.setModel(model);  
     }
 
     /**

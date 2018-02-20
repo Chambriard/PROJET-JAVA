@@ -64,7 +64,12 @@ public class Mission {
     public void setStatut(int s){
         statut = s;
     }
-    
+    public Date getDateDeb(){
+        return dateDeb;
+    }
+    public Date getDateFin(){
+        return dateFin;
+    }
     // Méthodes
     public String toString(){
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

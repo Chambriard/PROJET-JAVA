@@ -40,7 +40,7 @@ public class CSVFileCompetencesPersonnel extends CSVFile {
         lesCompEmployes = new HashMap<String, ArrayList<String>>();
     }
     /**
-     * Permet pour chaque employé de la liste lesEmp, de lui affecter les compétences lui
+     * Permet pour chaque employé de la liste lesEmp, de lui affecter les compétences
      * qu'il détient. les compétences que détient un employé sont décritent dans le fichier
      * CSV compétence_personnel.
      * lesComp est une liste de compétences qui détient toutes les compétences
