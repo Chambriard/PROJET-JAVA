@@ -48,8 +48,9 @@ public class NotreProjetJava {
         
         // TEST CSVFileCompetencesPersonnel()
         CSVFileCompetencesPersonnel maListCompPerso = new CSVFileCompetencesPersonnel();
-        maListCompPerso.recupCompetencesPersonnel(maListComp.getList(), maListPerso.getList());
-        //maListPerso.afficher();
+        //maListCompPerso.recupCompetencesPersonnel(maListComp.getList(), maListPerso.getList());
+        maListCompPerso.recup2();
+        //System.out.println(maListCompPerso.getList());
        
         
         CSVFileListeMission maListMission = new CSVFileListeMission();
@@ -77,7 +78,7 @@ public class NotreProjetJava {
         
         System.out.println(maListPerso.recupIdMax());
         
-        //System.out.println(maListCompPerso.lireListe());
+        System.out.println(maListCompPerso.lireListe());
         
     }
     

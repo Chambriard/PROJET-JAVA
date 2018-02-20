@@ -101,6 +101,7 @@ public class CSVFileCompetencesPersonnel extends CSVFile {
             }
             
             this.lesCompEmployes.put(chaineDecoupe[0], listeComp);
+            //System.out.print("ok");
             //SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yy");
             //Date d = sdf.parse(chaineDecoupe[2]);
             //lesEmployes.add(new Employe(chaineDecoupe[3], chaineDecoupe[1], chaineDecoupe[0], chaineDecoupe[2]));
@@ -118,7 +119,7 @@ public class CSVFileCompetencesPersonnel extends CSVFile {
         for(String key : lesCompEmployes.keySet()){
             liste += key + ";";
             
-            ArrayList<String> LesComp = new ArrayList<String>();
+            ArrayList<String> LesComp = lesCompEmployes.get(key);
             for(String c : LesComp){
                 liste += c + ";";
             }
@@ -140,5 +141,7 @@ public class CSVFileCompetencesPersonnel extends CSVFile {
         
         System.out.println("Ecriture OK");
     }
+    
+    //public void ajoutComp()
     
 }
