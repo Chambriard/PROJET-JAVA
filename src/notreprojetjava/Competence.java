@@ -18,6 +18,9 @@ public class Competence {
     public String getId(){
         return id ;
     }
+    public String getNomFra(){
+        return this.nomFra ;
+    }
     //Constrcteur
     public Competence (String id, String nomAng, String nomFra){
         this.id = id;
