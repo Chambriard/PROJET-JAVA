@@ -27,44 +27,12 @@ public class JDetailMission extends javax.swing.JFrame {
      */
     static Mission maMission ;
     static ArrayList<Employe> lesEmployes ;
-    static ArrayList<Competence> jtableEnsembleComp ;
+    static ArrayList<Competence> lesCompetences ;
     public JDetailMission(Mission uneMission,ArrayList<Employe> lesEmployes,ArrayList<Competence> lesComp) {
         initComponents();
         
-//        //init competences
-//        CSVFileListeCompetences maListComp = null;
-//        try {
-//            maListComp = new CSVFileListeCompetences();
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        maListComp.recupCompetence();
-//        
-//        //init employes
-//        CSVFileListePersonnel maListPerso = null;
-//        try {
-//            maListPerso = new CSVFileListePersonnel();
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        try {
-//            maListPerso.recupEmployes();
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (ParseException ex) {
-//            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//        //instancie compétence 
-//        CSVFileCompetencesPersonnel maListCompPerso = null;
-//        try {
-//            maListCompPerso = new CSVFileCompetencesPersonnel();
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        maListCompPerso.recupCompetencesPersonnel(maListComp.getList(), maListPerso.getList());
         this.lesEmployes = lesEmployes;
-        this.jtableEnsembleComp = lesComp;
+        this.lesCompetences = lesComp;
         this.maMission = uneMission;
         
         id.setText(uneMission.getId());
@@ -134,8 +102,20 @@ public class JDetailMission extends javax.swing.JFrame {
         DefaultTableModel modelLesComp = new DefaultTableModel();
         modelLesComp.addColumn("id");
         modelLesComp.addColumn("libelle");
-        modelLesComp.addColumn("Requis");
-        
+        for(Competence maCompetencesCSV : lesCompetences){
+            boolean missione = false ;
+            for(HashMap.Entry<Competence,Integer> entry : maMission.CompReq.entrySet()){
+                Competence key = entry.getKey();
+                Integer value = entry.getValue();
+                if(key.getId().equals(maCompetencesCSV.getId())){
+                    missione = true ;
+                }
+             }
+            if(!missione){
+                modelLesComp.addRow(new String[]{maCompetencesCSV.getId(), maCompetencesCSV.getNomFra()});
+            }
+        }
+        jtableLesCompetences.setModel(modelLesComp);
         
     }
 
@@ -180,6 +160,12 @@ public class JDetailMission extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         compMission = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jtableLesCompetences = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
+        TFRequis = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        ajouterComp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -249,6 +235,30 @@ public class JDetailMission extends javax.swing.JFrame {
 
         jLabel10.setText("Les Competences de la mission :");
 
+        jtableLesCompetences.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jtableLesCompetences);
+
+        jLabel11.setText("Les Competences :");
+
+        jLabel12.setText("Requis : ");
+
+        ajouterComp.setText("Ajouter");
+        ajouterComp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajouterCompActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -263,7 +273,6 @@ public class JDetailMission extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ajoutEmp))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
@@ -300,11 +309,20 @@ public class JDetailMission extends javax.swing.JFrame {
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(dateDebJ, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                                                 .addComponent(dateFinJ))
-                                            .addGap(88, 88, 88))))))))
+                                            .addGap(88, 88, 88)))))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel12)
+                            .addGap(18, 18, 18)
+                            .addComponent(TFRequis, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel10))
+                    .addComponent(ajouterComp))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -329,18 +347,31 @@ public class JDetailMission extends javax.swing.JFrame {
                     .addComponent(dateFinM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(dateFinA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(7, 7, 7)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(7, 7, 7)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TFRequis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addGap(22, 22, 22)
+                        .addComponent(ajouterComp)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ajoutEmp, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10))
-                    .addComponent(ajoutEmp))
+                        .addComponent(jLabel10)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -397,6 +428,32 @@ public class JDetailMission extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ajoutEmpActionPerformed
 
+    private void ajouterCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterCompActionPerformed
+        // TODO add your handling code here:
+        int ligne = jtableLesCompetences.getSelectedRow();
+        int colonneId = 0 ;
+        int colonneNomFra = 1;
+        String id = (String) jtableLesCompetences.getValueAt(ligne, colonneId);
+        String nomFra = (String) jtableLesCompetences.getValueAt(ligne, colonneNomFra);
+        String nbRequis = TFRequis.getText();
+        DefaultTableModel modelLesCompMission =(DefaultTableModel)  compMission.getModel();
+        modelLesCompMission.addRow(new Object[]{id,nomFra,nbRequis});
+        compMission.setModel(modelLesCompMission);
+        Integer nbRequisI = Integer.parseInt(nbRequis);
+        //Enlever la compétence de la Jtable
+        DefaultTableModel modelLesComp =(DefaultTableModel)  jtableLesCompetences.getModel();
+        modelLesComp.removeRow(ligne);
+        jtableLesCompetences.setModel(modelLesComp);
+      
+        for(Competence uneComp : lesCompetences ){
+            if(uneComp.getId().equals(id)){
+                maMission.CompReq.put(uneComp, nbRequisI);
+            }
+        }
+        
+        
+    }//GEN-LAST:event_ajouterCompActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -438,7 +495,9 @@ public class JDetailMission extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TFRequis;
     private javax.swing.JButton ajoutEmp;
+    private javax.swing.JButton ajouterComp;
     private javax.swing.JTable compMission;
     private javax.swing.JTextField dateDebA;
     private javax.swing.JTextField dateDebJ;
@@ -449,6 +508,8 @@ public class JDetailMission extends javax.swing.JFrame {
     private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -460,6 +521,8 @@ public class JDetailMission extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jtableLesCompetences;
     private javax.swing.JTable lesEmp;
     private javax.swing.JTable lesEmpDeLaMiss;
     // End of variables declaration//GEN-END:variables
