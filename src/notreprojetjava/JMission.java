@@ -23,9 +23,14 @@ public class JMission extends javax.swing.JFrame {
      * Creates new form JMission
      */
     static ArrayList<Mission> maListeMission ;
-    public JMission(ArrayList<Mission> maListeMission) throws FileNotFoundException {
+    static ArrayList<Employe> listeEmploye ;
+    static ArrayList<Competence> listeCompetence ;
+   
+    public JMission(ArrayList<Mission> maListeMission,ArrayList<Employe> listeEmploye,ArrayList<Competence> listeCompetence  ) throws FileNotFoundException {
         initComponents();
         this.maListeMission = maListeMission ; 
+        this.listeCompetence = listeCompetence ;
+        this.listeEmploye = listeEmploye ;
         //définition du model d'un jtable, je récpère les infos des mission que je met dans ce model
         //puis j'instancie mon jtable avec ce model 
         DefaultTableModel model = new DefaultTableModel();
@@ -115,7 +120,7 @@ public class JMission extends javax.swing.JFrame {
             String codeMiss = (String) JTableMission.getValueAt(Ligne, colonne);
             for(Mission maMission : maListeMission){
                 if(maMission.getId().equals(codeMiss)){
-                    frameDetailMission = new JDetailMission(maMission);
+                    frameDetailMission = new JDetailMission(maMission,listeEmploye,listeCompetence);
                     frameDetailMission.setVisible(true);
                 }
             }

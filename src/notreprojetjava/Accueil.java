@@ -136,7 +136,7 @@ public class Accueil extends javax.swing.JFrame {
         //Instanciation JFrame Mission 
         JMission frameMission = null;
         try {
-            frameMission = new JMission(maListMission.getList());
+            frameMission = new JMission(maListMission.getList(),maListPerso.getList(),maListComp.getList());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
         }
