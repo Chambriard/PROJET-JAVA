@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -158,14 +159,23 @@ public class JDetailMission extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         dateFinA = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        compMission = new javax.swing.JTable();
+        compMission = new javax.swing.JTable(){
+            public boolean isCellEditable(int d, int c){
+                return false;
+            }
+        };
         jLabel10 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jtableLesCompetences = new javax.swing.JTable();
+        jtableLesCompetences = new javax.swing.JTable(){
+            public boolean isCellEditable(int d, int c){
+                return false;
+            }
+        };
         jLabel11 = new javax.swing.JLabel();
         TFRequis = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         ajouterComp = new javax.swing.JButton();
+        removeEmp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -259,6 +269,13 @@ public class JDetailMission extends javax.swing.JFrame {
             }
         });
 
+        removeEmp.setText("Remove");
+        removeEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeEmpActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -271,6 +288,8 @@ public class JDetailMission extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(removeEmp)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(ajoutEmp))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,7 +390,8 @@ public class JDetailMission extends javax.swing.JFrame {
                     .addComponent(ajoutEmp, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10)))
+                        .addComponent(jLabel10)
+                        .addComponent(removeEmp)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -433,18 +453,28 @@ public class JDetailMission extends javax.swing.JFrame {
         int ligne = jtableLesCompetences.getSelectedRow();
         int colonneId = 0 ;
         int colonneNomFra = 1;
+        Integer nbRequisI = 0 ;
         String id = (String) jtableLesCompetences.getValueAt(ligne, colonneId);
         String nomFra = (String) jtableLesCompetences.getValueAt(ligne, colonneNomFra);
         String nbRequis = TFRequis.getText();
-        DefaultTableModel modelLesCompMission =(DefaultTableModel)  compMission.getModel();
-        modelLesCompMission.addRow(new Object[]{id,nomFra,nbRequis});
-        compMission.setModel(modelLesCompMission);
-        Integer nbRequisI = Integer.parseInt(nbRequis);
-        //Enlever la compétence de la Jtable
-        DefaultTableModel modelLesComp =(DefaultTableModel)  jtableLesCompetences.getModel();
-        modelLesComp.removeRow(ligne);
-        jtableLesCompetences.setModel(modelLesComp);
-      
+        nbRequisI = Integer.parseInt(nbRequis);
+        if (!TFRequis.getText().isEmpty()){
+            
+            DefaultTableModel modelLesCompMission =(DefaultTableModel)  compMission.getModel();
+            modelLesCompMission.addRow(new Object[]{id,nomFra,nbRequis});
+            compMission.setModel(modelLesCompMission);
+
+            //Enlever la compétence de la Jtable
+
+            DefaultTableModel modelLesComp =(DefaultTableModel)  jtableLesCompetences.getModel();
+            modelLesComp.removeRow(ligne);
+            System.out.println(nbRequisI);
+            jtableLesCompetences.setModel(modelLesComp);
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "veuillez reéssayer l'ajout!", "Message d'erreur", JOptionPane.INFORMATION_MESSAGE);
+        }     
+       
         for(Competence uneComp : lesCompetences ){
             if(uneComp.getId().equals(id)){
                 maMission.CompReq.put(uneComp, nbRequisI);
@@ -453,6 +483,26 @@ public class JDetailMission extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_ajouterCompActionPerformed
+
+    private void removeEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeEmpActionPerformed
+        // TODO add your handling code here:
+        
+        int ligne = lesEmpDeLaMiss.getSelectedRow();
+        int colonneId = 0 ;
+        int colonneNom = 1;
+        int colonnePrenom = 2 ;
+        String id = (String) lesEmpDeLaMiss.getValueAt(ligne, colonneId);
+        String nom = (String) lesEmpDeLaMiss.getValueAt(ligne, colonneNom);
+        String prenom = (String) lesEmpDeLaMiss.getValueAt(ligne, colonnePrenom);
+        
+        DefaultTableModel modelLesEmp =(DefaultTableModel)  lesEmp.getModel();
+        modelLesEmp.addRow(new Object[]{id,nom,prenom});
+        lesEmp.setModel(modelLesEmp);
+        DefaultTableModel modelLesEmpMission =(DefaultTableModel) lesEmpDeLaMiss.getModel();
+        modelLesEmpMission.removeRow(ligne);
+        lesEmpDeLaMiss.setModel(modelLesEmpMission);
+        
+    }//GEN-LAST:event_removeEmpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -525,5 +575,6 @@ public class JDetailMission extends javax.swing.JFrame {
     private javax.swing.JTable jtableLesCompetences;
     private javax.swing.JTable lesEmp;
     private javax.swing.JTable lesEmpDeLaMiss;
+    private javax.swing.JButton removeEmp;
     // End of variables declaration//GEN-END:variables
 }
