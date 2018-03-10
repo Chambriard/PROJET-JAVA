@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Chambriard
+ * @author Utilisateur
  */
 public class NotreProjetJava {
 
@@ -22,64 +22,15 @@ public class NotreProjetJava {
     public static void main(String[] args) throws FileNotFoundException, ParseException, IOException {
         System.out.println(" *** DEBUT *** ");
         
-        //CSVFile personnel = new CSVFile("liste_personnel.csv");
-        //CSVFile personnel = new CSVFile("liste_competences.csv");
-        //CSVFile personnel = new CSVFile("competences_personnel.csv");
-        //System.out.println(personnel.toString());
-        //personnel.afficher();
+        Entreprise entreprise = new Entreprise();
         
-        /*
-        Competence c = new Competence("F.1", "Anglais", "French");
-        System.out.println(c.toString());
-        System.out.println(c.returnFormat());
-        */
+        Competence c = entreprise.recupCompById("A.1.");
+        Mission m = entreprise.recupMissById("M8");
+        //m.checkCompReq();
         
-       /* // TEST CSVFileListeCompetences()*/
-        CSVFileListeCompetences maListComp = new CSVFileListeCompetences();
-        maListComp.recupCompetence();
-        //maListComp.afficher();
-   
-        
-        // TEST CSVFileListePersonnel()
-        CSVFileListePersonnel maListPerso = new CSVFileListePersonnel();
-        maListPerso.recupEmployes();
-        //maListPerso.afficher();
-        
-        
-        // TEST CSVFileCompetencesPersonnel()
-        CSVFileCompetencesPersonnel maListCompPerso = new CSVFileCompetencesPersonnel();
-        //maListCompPerso.recupCompetencesPersonnel(maListComp.getList(), maListPerso.getList());
-        maListCompPerso.recup2();
-        //System.out.println(maListCompPerso.getList());
-       
-        
-        CSVFileListeMission maListMission = new CSVFileListeMission();
-        maListMission.recupMission();
-        //maListMission.afficher();
-        
-        
-        CSVFileListeMissionPersonnel maListMissionPerso = new CSVFileListeMissionPersonnel();
-        maListMissionPerso.recupPeronnel(maListMission.getList(),maListPerso.getList());
-        
-        CSVFileListeMissionCompetences maListMissionComp = new CSVFileListeMissionCompetences();
-        maListMissionComp.recupCompRequise( maListMission.getList(), maListComp.getList());
-        
-        //maListMission.afficher();
-        /*System.out.println(maListPerso.max());
-        System.out.println(maListPerso.lireListe());
-        System.out.println(maListPerso.getList().size());
-        
-        maListPerso.ajoutEmp("Lefebvre", "Jerome", "17/02/2018");
-        
-        System.out.println(maListPerso.lireListe());
-        System.out.println(maListPerso.getList().size());
-        
-        maListPerso.sauvegarder();*/
-        
-        System.out.println(maListPerso.recupIdMax());
-        
-        System.out.println(maListCompPerso.lireListe());
-        
+        DateConvert d = new DateConvert();
+        System.out.println(d.currentDate());
+        System.out.println(m.getDateDeb());
     }
     
 }

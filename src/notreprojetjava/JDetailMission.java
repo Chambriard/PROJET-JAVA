@@ -438,8 +438,10 @@ public class JDetailMission extends javax.swing.JFrame {
                         if(uneComp.getId().equals(idCom)){
                             nbRequisI = nbRequisI - 1 ;
                             modelComMission.removeRow(i);
-                            modelComMission.addRow(new Object[]{idCom,libelle,nbRequisI});
-                            compMission.setModel(modelComMission);
+                            if(nbRequisI > 0){
+                                modelComMission.addRow(new Object[]{idCom,libelle,nbRequisI.toString()});
+                                compMission.setModel(modelComMission);
+                            }
                             
                         }
                     }
@@ -502,6 +504,33 @@ public class JDetailMission extends javax.swing.JFrame {
         modelLesEmpMission.removeRow(ligne);
         lesEmpDeLaMiss.setModel(modelLesEmpMission);
         
+        //Retirer employé des liste et rajouter compétence
+        DefaultTableModel modelComMission =(DefaultTableModel)  compMission.getModel();
+        for(Employe unEmp : lesEmployes ){
+            if(unEmp.getId().equals(id)){
+                maMission.equipeMission.remove(unEmp);
+                //PROBLEME
+                for(int i=0; i<compMission.getRowCount();i++){
+                    String idCom = (String) compMission.getValueAt(i, 0);
+                    String libelle = (String) compMission.getValueAt(i, 1);
+                    String nbRequisS = (String) compMission.getValueAt(i, 2);
+                    Integer nbRequisI = Integer.parseInt(nbRequisS);
+                    System.out.println(idCom);
+                    System.out.println(libelle);
+                    System.out.println(nbRequisS);
+                    //System.out.println(unEmp.toString());
+                    for(Competence uneComp : unEmp.getCompetences()){
+                        if(uneComp.getId().equals(idCom)){
+                            nbRequisI = nbRequisI + 1 ;
+                            modelComMission.removeRow(i);
+                            modelComMission.addRow(new Object[]{idCom,libelle,nbRequisI.toString()});
+                            compMission.setModel(modelComMission);
+                            nbRequisI = 0 ;
+                        }
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_removeEmpActionPerformed
 
     /**

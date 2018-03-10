@@ -7,47 +7,52 @@ package notreprojetjava;
 
 /**
  * 
- * @author Chambriard
+ * @author Utilisateur
  */
-public class Competence {
-    //Attribus
-    private String id ;
-    private String nomAng ;
-    private String nomFra ;
-    //Accesseur
+public class Competence implements IEntite {
+    
+    // Attributs
+    private String id;
+    private String libelleEN;
+    private String libelleFR;
+    
+    // Accesseurs
     public String getId(){
         return id ;
     }
-    public String getNomFra(){
-        return this.nomFra ;
+    
+    public String getLibelleFR(){
+        return libelleFR ;
     }
-    //Constrcteur
+    
+    public String getLibelleEN(){
+        return libelleEN ;
+    }
+    
+    // Constructeur
     public Competence (String id, String nomAng, String nomFra){
         this.id = id;
-        this.nomAng = nomAng;
-        this.nomFra = nomFra;
-    }
-    public Competence (String id){
-        this.id = id;
-        this.nomAng = "";
-        this.nomFra = "";
-    }
-    //Méthodes
-    public String toStringId(){
-        return id ;
+        this.libelleEN = nomAng;
+        this.libelleFR = nomFra;
     }
     
+    // Méthodes
+    
+    // Ce toString est nécessaire pour la sauvegarde du fichier missions_competences
     public String toString(){
-        return id + "\nNom Anglais : " + nomAng + "\nNom Français : " + nomFra;
+        return id;
+        //return id + "\nLibellé Anglais : " + libelleEN + "\nLibellé Français : " + libelleFR;
     }
     
-    public String returnFormat(){
-        return id + ";" + nomAng + ";" + nomFra + ";";
-    }
-    public boolean equals(Object obj){
-        Competence other =(Competence)obj;
-        if(!this.id.equals(other.id))
-            return false;
-        return true;              
+    /*public String returnFormat(){
+        return id + ";" + libelleEN + ";" + libelleFR + ";";
+    }*/
+    
+    /**
+     * Retourne la compétence au format CSV.
+     * @return 
+     */
+    public String formatCSV(){
+        return id + ";" + libelleEN + ";" + libelleFR + ";\n";
     }
 }
